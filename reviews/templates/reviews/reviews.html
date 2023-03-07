@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Reviews | {% endblock title %}</title>
+</head>
+<body>
+{% load bootstrap4 %}
+
+    {% block header %}
+      <h5 class="btn btn-outline-warning text-dark font-weight-bold">{{product.name|upper}} (All reviews)</h5>
+    {% endblock header %}
+
+    {% block content %}
+      <div class="container">
+        <h6>Post a Review</h6>
+      <div class="row">
+        <div class="col-md-9 col-lg-8">
+          <form action="{% url 'reviews:reviews' product.slug %}" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+            {% buttons %}
+              <button class="btn btn-outline-primary" name="submit">Submit Review</button>
+            {% endbuttons %}
+          </form>
+        </div>
+      </div>
+
+      {% for review in reviews %}
+           <div class="card mb-3">
+             <h6 class="card-header">
+                  @{{ review.username }},
+                  <small>
+                      {{ review.date_posted }}
+                  </small>
+              </h6>
+              <p class="card-body">{{ review.entry }}</p>
+           </div> 
+      {% empty %}
+        <p>There are no reviews for this product yet!</p>
+      {% endfor %}
+      </div>
+    {% endblock content %}
+
+</div>
+</body>
+</html>
