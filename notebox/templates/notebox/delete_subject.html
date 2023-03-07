@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Delete subject | {% endblock title %}</title>
+</head>
+<body>
+
+{% block header %}
+{% load bootstrap4%}
+
+    <div>
+      <p>Do you really want to delete this Subject?</p>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+    <form action="{% url 'notebox:delete_subject' blog.id %}" method="post" class="form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <p>
+          <input class="btn btn-outline-primary" type="submit" role="button" value="Delete">
+          <a href="../">Cancel</a>
+      </p>
+    </form>
+    </div>
+{% endblock content %}
+
+</body>
+</html>

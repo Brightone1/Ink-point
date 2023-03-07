@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ blog.title }} | {% endblock title %}</title>
+</head>
+<body>
+
+{% block header %}
+
+    <p class="lead">Subject: {{ blog }}</p>
+
+    <p class="new-note">
+      <a  href="{% url 'notebox:delete_subject' blog.id %}">Delete Subject</a>  -
+      <a  href="{% url 'notebox:new_entry' blog.id %}">Add new Note</a>
+    </p>
+    <p>Notes: </p>
+{% endblock header %}
+
+{% block content %}
+  <div class="container">
+    {% for entry in entries %}
+      <div class="card mb-3">
+        <h6 class="card-header">
+          {{ entry.date_added|date:'M d, Y H:i' }}
+
+          <small>
+              <a href="{% url 'notebox:edit_entry'  entry.id %}">Edit Note</a>
+          </small>
+        </h6>
+        <div class="card-body">
+          {{ entry.text|linebreaks }}
+        </div>
+      </div>
+    {% empty %}
+      <p>No notes have been added yet!</p>
+    {% endfor %}
+  </div>
+
+{% endblock content %}
+
+</body>
+</html>

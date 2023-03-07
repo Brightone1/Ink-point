@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}New note | {% endblock title %}</title>
+</head>
+<body>
+  {% load bootstrap4%}
+
+{% block header %}
+    <div>
+    <p>
+      <a href="{% url 'notebox:blog' blog.id %}">{{ blog }}</a>
+    </p>
+    <p>Add new Note:</p>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+    <form action="{% url 'notebox:new_entry' blog.id %}" method="post" class="form">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <button name="submit" class="btn btn-outline-primary">Add note</button>
+      {% endbuttons %}
+    </form>
+    </div>
+{% endblock content %}
+
+</body>
+</html>

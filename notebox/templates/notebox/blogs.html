@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Subjects | {% endblock title %}</title>
+</head>
+<body>
+{% load bootstrap4%}
+
+{% block header %}
+    <h3>Subjects:</h3>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+      {% for blog in blogs %}
+      <li>
+        <a href="{% url 'notebox:blog' blog.id %}">{{ blog }}</a>
+      </li>
+      <br>
+    {% empty %}
+      <p>There are no Subjects added yet!</p>
+    {% endfor %}
+
+    <a class="btn btn-outline-primary" href="{% url 'notebox:new_blog' %}">Add new Subject</a>
+    </div>
+{% endblock content %}
+
+</body>
+</html>
