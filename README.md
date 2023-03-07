@@ -6,10 +6,10 @@ Users are allowed to create an Account with this site to acces some sections suc
 
 <h3>Orders</h3>
 The fact that the platform allows users to browse through various products, they can as well place orders fro whatever products they want.
-This would involve then filling a form with required details such as: 
--Phone number, 
--their location, 
--their preffered method of payment and
+This would involve then filling a form with required details such as:<br>
+-Phone number,<br> 
+-their location,<br> 
+-their preffered method of payment and<br>
 -the Quantity 
 
 <h3>Cart</h3>
