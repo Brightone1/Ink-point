@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{{content.id}} | {% endblock title %}</title>
+</head>
+<body>
+  {% load bootstrap4 %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-lg-8">
+      <form action="{% url 'blog:content' content.id %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+          <button name="submit" class="btn btn-outline-primary">Submit</button>
+        {% endbuttons %}
+      </form>
+    </div>
+
+    </div>    
+    {% for comment in comments %}
+      <div class="card mb-3">
+        <h6 class="card-header">
+        @{{comment.username}}, 
+        <small>
+          {{comment.date_published}}
+        </small>
+      </h6>
+      <p class="card-body">{{comment.text}}</p>
+      </div>
+    {% endfor%}
+  </div>
+
+{% endblock content %}
+
+</body>
+</html>

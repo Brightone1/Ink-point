@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Blogs | {% endblock title %}</title>
+</head>
+<body>
+
+{% block header %}
+  <h2>Blogs</h2>
+{% endblock header %}
+
+{% block content %}
+  <div class="container">
+    {% for topic in topics %}
+      <li>
+        <a class="lead" href="{% url 'blog:topic' topic.slug %}">{{ topic }} &raquo</a>
+      </li>
+      <br>
+    {% endfor%}
+  </div>
+
+{% endblock content %}
+
+</body>
+</html>
