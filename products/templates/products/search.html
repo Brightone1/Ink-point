@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Search | {% endblock title %}</title>
+</head>
+<body>
+    {% load bootstrap4 %}
+
+    {% block header %}
+      <p class="font-weight-bold text-center text-primary">{{search_count}} Result(s) found</p>
+    {% endblock header %}
+
+    {% block content %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            {% for product in products %}
+                              <div class="col-md-6 col-lg-4 mx-auto">
+                                  <div class="card mb-3 mx-auto">
+                                      <img style="height:400px" class="card-img-top w-100" src="{{ product.image.url }}" alt="product image" />
+                                      <div class="card-body">
+                                          <h5 class="font-weight-bold">{{ product.name }}</h5>
+                                          <h6>Sh.{{ product.price }}</h6>
+                                          <a href="{% url 'products:product' product.slug %}" >Product info &raquo</a>
+                                      </div>
+                                  </div>
+                              </div>
+                            {% empty %}
+                              <p class="lead">There are no result for the given query...</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>   
+    {% endblock content %}
+
+</div>
+</body>
+</html>

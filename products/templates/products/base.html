@@ -1,0 +1,113 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}Ink Point</title>
+    
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap stylings -->
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <!-- End of Bootstrap stylings -->
+</head>
+
+<body>
+
+<style>
+  .dropdown:hover>.dropdown-menu{
+    display: block;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <i class="fa fa-google-wallet fa-2x mr-2"></i>
+
+    <a style="font-family: 'Rubik',sans-serif;" class="navbar-brand" href="{% url 'products:index' %}">
+      Ink Point
+    </a>
+
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- End of Toggle button -->
+        
+    <div style="font-family: 'Rubik',sans-serif;" class="collapse navbar-collapse" id="navbarCollapse">
+
+        <ul class="navbar-nav mx-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link font-weight-bold"  href="{% url 'products:categories' %}">
+                  <i class="fa fa-cubes text-primary"></i>| </a>
+                  <div class="dropdown-menu" aria-labelledby="navbar Dropdown">
+                    <p class="dropdown-item">Categories</p>
+                  </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link font-weight-bold" href="{% url 'products:my_orders' %}">
+                  <i class="fa fa-shopping-basket text-primary"></i> |</a>
+                <div class="dropdown-menu" aria-labelledby="navbar Dropdown">
+                    <p class="dropdown-item">My Orders</p>
+                  </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link font-weight-bold" href="{% url 'products:cart' %}">
+                  <i class="fa fa-cart-arrow-down text-primary"></i></a>
+                <div class="dropdown-menu" aria-labelledby="navbar Dropdown">
+                    <p class="dropdown-item">Cart</p>
+                  </div>
+              </li>
+              
+        </ul>
+        
+        <!-- User authentication -->
+        <ul class="navbar-nav ml-auto">
+              <form action="{% url 'products:search' %}" method="get">
+                <li class="navbar-item mr-3 my-auto">
+                <div class="input-group">
+                  <input class="form-control" name="query" type="text" placeholder="Search">
+                  <div class="input-group-append">
+                    <button type="button" name="submit"  class="btn btn-primary">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+               </li>
+              </form>
+
+              {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <span class="navbar-text">Hello, {{ user.username }}.</span>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i></a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'users:login' %}">Log in <i class="fa fa-sign-in"></i></a></li>
+              {% endif %}
+        </ul>
+        <!-- End of User authentication -->
+    </div>
+</nav>
+
+<main role="main" class="container-fluid">
+      <div style="font-family: 'Rubik',sans-serif;" class=" container pb-2 mb-2 border-bottom">
+        {% block header %}{% endblock header %}
+      </div>
+      <div style="font-family: 'Rubik',sans-serif;">
+          {% block content %}{% endblock content %}
+      </div>
+</main>
+
+</body>
+</html>

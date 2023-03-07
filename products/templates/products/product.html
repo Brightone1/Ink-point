@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{{product.name}} | {% endblock title %}</title>
+</head>
+<body>
+    {% load bootstrap4 %}
+
+    {% block header %}
+        <h5 class="text-center">{{product.name|upper}}</h5>
+    {% endblock header %}
+
+    {% block content %}
+        <div class="container">
+            <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 m-auto">
+                    <img style="height:500px" class="w-100 rounded" src="{{ product.image.url }}" alt="product image" />
+                </div>
+                <div class="col-lg-8 card-body">
+                    <h6>
+                        HIGHLIGHTS:
+                        <a href="{% url 'reviews:reviews' product.slug %}">See Reviews &raquo</a>
+                    </h6>
+                    <div>
+                        <p class="border-bottom">{{ product.description|linebreaks }}</p>
+                        <h6 >Sh.{{ product.price }}</h6>
+                        <h6 >Status: {{ product.status|upper }}</h6>
+                        </div>
+                        <br>
+                        <small>
+                          <a class="btn btn-outline-primary" href="{% url 'products:add_to_cart' product.slug %}"><i class="fa fa-cart-plus pr-2"></i>Add to cart</a> 
+                          <a class="btn btn-primary ml-3" href="{% url 'products:new_order' product.slug %}"><i class="fa fa-shopping-basket pr-2"></i>Order Now</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    {% endblock content %}
+
+</div>
+</body>
+</html>

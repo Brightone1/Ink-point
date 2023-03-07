@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    {% load bootstrap4 %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Home | {% endblock title %}</title>
+</head>
+
+<body>
+{% block content %}
+      <div class="row mx-auto">
+        <!-- info column -->
+        <div class="col-lg-3 col-md-4">
+          <h5 class="ml-2">Dealers In:</h5>
+          <div style="width: 100px; height: 5px;" class="underline bg-danger ml-2"></div>
+          <br>
+          <ul>
+            {% for category in categories %}
+            <li>
+              <a href="{% url 'products:categories' %}">{{ category }}</a>
+            </li>
+            <br>
+            {% endfor %}
+          </ul>
+        </div>
+        <!-- end of info column -->
+
+        <!-- carousel column -->
+        <div class="col-lg-6 col-md-8 mx-auto text-center mb-3">
+          <!-- carousel -->
+          <div id="item" class="carousel slide" data-ride="'carousel">
+              <!-- indicators -->
+              <ul class="carousel-indicators">
+                <li data-target="#item" data-slide-to='0' class="active"></li>
+                <li data-target="#item" data-slide-to='1'></li>
+                <li data-target="#item" data-slide-to='2'></li>
+                <li data-target="#item" data-slide-to='3'></li>
+                <li data-target="#item" data-slide-to='4'></li>
+              </ul>
+              <!-- images -->
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img style=" height: 500px;" src="{% static 'uploads/home1.jpeg'%}" alt="home" class="d-block w-100 rounded">
+                </div>
+                <div class="carousel-item">
+                  <img style=" height: 500px;" src="{% static 'uploads/home2.jpg'%}" alt="home" class="d-block w-100 rounded">
+                </div>
+                <div class="carousel-item">
+                  <img style=" height: 500px;" src="{% static 'uploads/home3.jpeg'%}" alt="home" class="d-block w-100 rounded">
+                </div>
+                <div class="carousel-item">
+                  <img style=" height: 500px;" src="{% static 'uploads/home4.jpeg'%}" alt="home" class="d-block w-100 rounded">
+                </div>
+                <div class="carousel-item">
+                  <img style=" height: 500px;" src="{% static 'uploads/home5.jpeg'%}" alt="home" class="d-block w-100 rounded">
+                </div>
+              </div>
+              <!-- end of images -->
+
+              <!-- controls -->
+              <a href="#item" class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a href="#item" class="carousel-control-next" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+              <!-- end of controls -->
+            </div>
+            <!-- end of carousel -->
+        </div>
+
+        <!-- Extra fields -->
+        <div class="col-lg-3 col-md-0">
+          <h5 class="ml-2">Extra Fields</h5>
+          <div style="width: 100px; height: 5px;" class="underline bg-danger ml-2"></div>
+
+          <div class="card m-3">
+            <h5 class="card-header"><a href="{% url 'notebox:blogs'%}"><i class="fa fa-pencil-square-o text-primary pr-2"></i>NoteBox &raquo</a></h5>
+            <p class="card-body">
+              <b>NoteBox</b> offers you an environment to track and add notes
+                 to subjects that you love as well as areas of life that interests you.
+            </p>
+          </div> 
+          <div class="card m-3">
+            <h5 class="card-header">
+              <a href="{% url 'blog:topics' %}">
+                <i class="fa fa-bookmark-o text-primary pr-2"></i>
+                Blog  &raquo</a>
+            </h5>
+            <p class="card-body">
+              Get the chance to Browse through the various Topics already prepared by other Geeks.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- end of Extra fields -->
+
+      <!-- Footer -->
+      <div class="container-fluid border-top">
+        <div class="row">
+          <div class="col-lg-6 col-md-8 mx-auto text-center mb-3">
+            <!-- contact section -->
+         <section class="mx-auto mt-5">
+          <div>
+            <h2 class="text-center">connect with us</h2>
+            <div style="width: 100px; height: 5px;" class="underline bg-danger mx-auto"></div>
+          <br>
+          </div>
+          <div class="row w-100 mx-auto">
+            <div class="col-md-4 text-center mb-3">
+              <i class="fa fa-phone fa-2x text-warning"></i>
+              <h5>Calls</h5>
+              <h6>0834567889</h6>
+            </div>
+            <div class="col-md-4 text-center mb-3">
+              <i class="fa fa-envelope fa-2x text-warning"></i>
+              <h5>Email</h5>
+              <h6>inkpoint@info.com</h6>
+            </div>
+            <div class="col-md-4 text-center mx-auto mb-3">
+              <i class="fa fa-twitter-square fa-2x text-warning"></i>
+              <h5>Twitter</h5>
+              <h6>@InkPoint</h6>
+            </div>
+          </div>
+        </section>
+        <!-- end of contact section -->
+          </div>
+        </div>
+      </div>
+      <!-- end of footer -->
+    {% endblock content %}
+    
+</body>
+</html>

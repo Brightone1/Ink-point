@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Categories | {% endblock title %}</title>
+</head>
+<body>
+    {% load bootstrap4 %}
+
+    {% block header %}
+        <h5 class="text-center">PRODUCT CATEGORIES</h5>
+    {% endblock header %}
+
+    {% block content %}
+        <div class="container">
+          <div class="row">
+              <div class="col-md-9 mx-auto">
+                  <div class="dropdown">
+              {% for category in categories %}
+                <div class="card mb-2">
+                    <h6 class="card-header text-dark dropdown-toggle text-center" data-toggle="dropdown">
+                      {{ category|upper }}
+                      <span class="caret"></span>
+                    </h6>
+                    <ul class="dropdown-menu p-3">
+                        {% for subcategory in category.subcategory_set.all %}
+                          <li>
+                            <a href="{% url 'products:subcategory' subcategory.slug %}">{{ subcategory }}</a>
+                          </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+              {% endfor %}
+          </div>
+              </div>
+          </div>
+        </div>
+    {% endblock content %}
+
+</div>
+</body>
+</html>

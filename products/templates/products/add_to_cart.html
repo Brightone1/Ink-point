@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Add to cart | {% endblock title %}</title>
+</head>
+<body>
+{% load bootstrap4 %}
+
+{% block header %}
+    <p>Do you want to add this item to cart?</p>
+{% endblock header %}
+
+{% block content %}
+  <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+            <form action="{% url 'products:add_to_cart' product.slug %}" method="post" class="form">
+               {% csrf_token %}
+               {% bootstrap_form form %}
+               {% buttons %}
+                  <button class="btn btn-outline-primary" name="submit"><i class="fa fa-cart-plus pr-2"></i>Add to cart</button>
+                  <a href="{% url 'products:product' product.slug %}">Not really.</a>
+               {% endbuttons %}
+            </form>
+        </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+</body>
+</html>

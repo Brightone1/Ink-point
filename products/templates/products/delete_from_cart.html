@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Remove from cart | {% endblock title %}</title>
+</head>
+<body>
+    {% load bootstrap4 %}
+
+    {% block content %}
+      <div class="container">
+        <p>Do you really want to delete <b>{{ cart_item.product.name }}</b> from cart?</p>
+
+        <form action="{% url 'products:delete_from_cart' cart_item.id %}" method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p}}
+            {% buttons %}
+              <button class="btn btn-outline-primary" name="submit"><i class="fa fa-trash pr-2"></i>Delete</button>
+            {% endbuttons %}
+        </form>
+      </div>
+    {% endblock content %}
+
+</div>
+</body>
+</html>

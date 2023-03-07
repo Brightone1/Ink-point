@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}My Orders | {% endblock title %}</title>
+</head>
+<body>
+    {% load bootstrap4 %}
+
+    {% block header %}
+      <h5 class="text-center">MY ORDERS <span class="btn btn-outline-warning text-dark">{{order_count}} Item(s)</span></h5>
+    {% endblock header %}
+
+    {% block content %}
+        <div class="container">
+          {% for order in orders %}
+          <div class="card mb-3 mx-auto w-75">
+              <div class="row">
+                <img style="height:350px" class="col-md-9 col-lg-4" src="{{ order.product.image.url }}">
+                <div class="card-body col-ml-6 lead font-weight-light">
+                  <h5 class="font-weight-bold">
+                     {{ order.product.name }}
+                  </h5>
+                  <small>
+                    <a class="btn btn-outline-primary" href="{% url 'products:product' order.product.slug %}">View product</a>
+                  </small>
+                  <p>Delivery:{{ order.delivery_method }}</p>
+                  <p>Quantity: {{ order.quantity }}</p>
+                  <p>Date Ordered: {{ order.date_placed }}</p>
+                  <h6 class="btn btn-success">Status: {{ order.status }}</h6>
+                </div>
+              </div>
+          </div>
+        {% empty %}
+          <p>You haven't placed any orders yet!</p>
+        {% endfor %}
+        </div>
+    {% endblock content %}
+</body>
+</html>

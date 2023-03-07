@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}My Cart | {% endblock title %}</title>
+</head>
+<body>
+    {% block header %}
+      <h5 class="text-center">CART ITEMS <span class="btn btn-outline-warning text-dark">{{cart_item_count}} Item(s)</span></h5>
+    {% endblock header %}
+
+    {% block content %}
+        <div class="container">
+          {% for cart_item in cart_items %}
+          <div class="card mb-3 w-75 mx-auto">
+            <div class="row">
+              <img style="height: 350px" class="col-md-9 col-lg-4" src="{{ cart_item.product.image.url }}">
+              <div class="card-body col-md-9 col-lg-8 my-auto">
+                <h4 class="">{{ cart_item.product.name }}</h4>
+                <h6>
+                  <a href="{% url 'products:product' cart_item.product.slug %}">View Product &raquo</a>
+                </h6>
+
+                <p class="lead">Date Added: {{ cart_item.date_added }}</p>
+                <a class="btn btn-primary" href="{% url 'products:new_order' cart_item.product.slug %}"><i class="fa fa-shopping-basket pr-2"></i>Order Now</a> 
+                <a class="btn btn-outline-primary ml-3" href="{% url 'products:delete_from_cart' cart_item.id %}"><i class="fa fa-trash pr-2"></i>Delete from cart</a>
+              </div>
+            </div> 
+          </div>
+        {% empty %}
+          <p>You haven't added any items to cart yet!</p>
+        {% endfor %}
+        </div>
+    {% endblock content %}
+</body>
+</html>

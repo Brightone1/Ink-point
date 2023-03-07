@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ subcategory.title }} | {% endblock title %}</title>
+</head>
+<style type="text/css">
+    .height{
+        height: 500px;
+    }
+</style>
+<body>
+    {% load bootstrap4%}
+<div>
+    {% block header %}
+        <h5>{{ subcategory.title|upper }}</h5>
+    {% endblock header %}
+
+    {% block content %}
+          
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            {% for product in products %}
+                              <div class=" col-md-6 col-lg-4 mx-auto">
+                                  <div class="card mb-3 mx-auto">
+                                      <img style="height:400px" class="card-img-top w-100" src="{{ product.image.url }}">
+                                      <div class="card-body">
+                                          <h5 class="font-weight-bold">{{ product.name }}</h5>
+                                          <h6>Sh.{{ product.price }}</h6>
+                                          <a href="{% url 'products:product' product.slug %}" class="btn btn-outline-primary">View product</a>
+                                      </div>
+                                  </div>
+                              </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+    {% endblock content %}
+
+</div>
+</body>
+</html>

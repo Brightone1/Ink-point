@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'products/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}New order | {% endblock title %}</title>
+</head>
+<body>
+{% load bootstrap4 %}
+
+{% block header %}
+<h5 class="text-center">NEW ORDER</h5>
+{% endblock header %}
+
+{% block content %}
+    
+    <div class="container">
+        <div class="row">
+        <div class="col-md-9 col-lg-5 mx-auto">
+            <p>All Orders placed will be processed within 3-4days. You have 1 day to cancel
+               your order after which it will be validated as accurate.<br>
+               If upon reception of your item you are not satisfied, feel free to reach to as through
+               the following <a href="{% url 'products:index' %}">contact addresses.</a></p>
+
+            <form action="{% url 'products:new_order' product.slug %}" method="post" class="form">
+              {% csrf_token %}
+              {% bootstrap_form form%}
+              {% buttons %}
+                 <button class="btn btn-outline-primary" name="submit">Place Order</button>
+              {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock content %}
+
+</body>
+</html>
