@@ -26,3 +26,7 @@ Everyone comes across articles and blogs everyday whether conciously or otherwis
 
 The comment section gives power to the users to interact and share their views about whatever has been published.
 This way, more ideas are are collected, mistakes corrected and weak ones amplified.
+
+
+<h2>WHY THIS</h2>
+Much as there are many online websites for bookstore out there, this project sets out to add user experience by helping the users. We learn alot everyday and sometines we just wanna keep track of everything we learn only that our minds are limited memory-wise. You could use a notebook no doubt but that is also susceptible to loss which means that without online backup of the key points we learn, you wuill lose everything all at once.
